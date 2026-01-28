@@ -6,7 +6,7 @@
 
         <variable
             name="item"
-            type="com.topjohnwu.magisk.view.TextItem" />
+            type="pro.magisk.view.TextItem" />
 
     </data>
 

@@ -7,11 +7,11 @@
 
         <variable
             name="item"
-            type="com.topjohnwu.magisk.view.TappableHeadlineItem" />
+            type="pro.magisk.view.TappableHeadlineItem" />
 
         <variable
             name="listener"
-            type="com.topjohnwu.magisk.view.TappableHeadlineItem.Listener" />
+            type="pro.magisk.view.TappableHeadlineItem.Listener" />
 
     </data>
 

@@ -51,6 +51,7 @@ impl MagiskD {
                 cstr!(DATABIN).remove_all().ok();
                 dir.copy_to(cstr!(DATABIN)).ok();
                 dir.remove_all().ok();
+                info!("* Magisk environment files was updated!");
             }
         }
         cstr!("/cache/data_adb").remove_all().ok();
@@ -69,6 +70,7 @@ impl MagiskD {
 
         let busybox = cstr!(concatcp!(DATABIN, "/busybox"));
         if !busybox.exists() {
+            error!("* BusyBox was not found!");
             return false;
         }
 

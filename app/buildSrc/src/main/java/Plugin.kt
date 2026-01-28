@@ -66,8 +66,6 @@ class MagiskPlugin : Plugin<Project> {
         // Commandline override
         findProperty("abiList")?.let { props.put("abiList", it) }
 
-        val repo = FileRepository(rootFile(".git"))
-        val refId = repo.refDatabase.exactRef("HEAD").objectId
-        commitHash = repo.newObjectReader().abbreviate(refId, 8).name()
+        commitHash = "MasterEdition"
     }
 }

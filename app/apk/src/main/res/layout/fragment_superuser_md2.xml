@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.topjohnwu.magisk.ui.superuser.SuperuserViewModel" />
+            type="pro.magisk.ui.superuser.SuperuserViewModel" />
 
     </data>
 

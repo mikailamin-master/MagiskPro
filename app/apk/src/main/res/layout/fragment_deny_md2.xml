@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.topjohnwu.magisk.ui.deny.DenyListViewModel" />
+            type="pro.magisk.ui.deny.DenyListViewModel" />
 
     </data>
 

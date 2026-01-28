@@ -7,7 +7,7 @@
 
         <variable
             name="data"
-            type="com.topjohnwu.magisk.ui.settings.UpdateChannelUrl" />
+            type="pro.magisk.ui.settings.UpdateChannelUrl" />
 
     </data>
 
