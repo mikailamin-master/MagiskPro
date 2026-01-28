@@ -12,17 +12,20 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
+            # 1️⃣ Checkout
             - name: Checkout
               uses: actions/checkout@v4
               with:
                   submodules: recursive
                   fetch-depth: 1
 
+            # 2️⃣ Setup environment
             - name: Setup environment
               uses: ./.github/actions/setup
               with:
                   is-asset-build: true
 
+            # 3️⃣ Cache gradle
             - name: Cache gradle
               uses: actions/cache@v4
               with:
@@ -33,6 +36,7 @@ jobs:
                   restore-keys: |
                       gradle-${{ runner.os }}-
 
+            # 4️⃣ Cache pip
             - name: Cache pip
               uses: actions/cache@v4
               with:
@@ -41,9 +45,11 @@ jobs:
                   restore-keys: |
                       pip-${{ runner.os }}-
 
+            # 5️⃣ Install ccache
             - name: Install ccache
               run: sudo apt-get install -y ccache
 
+            # 6️⃣ Cache ccache
             - name: Cache ccache
               uses: actions/cache@v4
               with:
@@ -57,12 +63,31 @@ jobs:
                   echo "CCACHE_DIR=$HOME/.ccache" >> $GITHUB_ENV
                   echo "CCACHE_MAXSIZE=2G" >> $GITHUB_ENV
 
+            # 7️⃣ Download previous Magisk output if exists
+            - name: Download previous Magisk output
+              uses: actions/download-artifact@v4
+              with:
+                  name: magisk_output
+                  path: out
+              continue-on-error: true
+
+            # 8️⃣ Download previous native build if exists
+            - name: Download previous native build
+              uses: actions/download-artifact@v4
+              with:
+                  name: native_build
+                  path: native/out
+              continue-on-error: true
+
+            # 9️⃣ Build Magisk (full build)
             - name: Build Magisk
               run: python build.py -vr all
 
+            # 🔟 Stop Gradle daemon
             - name: Stop gradle daemon
               run: ./app/gradlew --stop
 
+            # 1️⃣1️⃣ Upload Magisk output
             - name: Upload Magisk output
               uses: actions/upload-artifact@v4
               with:
@@ -70,6 +95,7 @@ jobs:
                   path: out
                   compression-level: 9
 
+            # 1️⃣2️⃣ Upload native builds
             - name: Upload native builds
               uses: actions/upload-artifact@v4
               with:
