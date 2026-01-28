@@ -32,7 +32,6 @@ open class SuRequestActivity : UIActivity<ActivityRequestBinding>(), UntrackedAc
         window.addFlags(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             window.setHideOverlayWindows(true)
-            window.setBackgroundBlurRadius(15)
         }
         setTheme(Theme.selected.themeRes)
         super.onCreate(savedInstanceState)
