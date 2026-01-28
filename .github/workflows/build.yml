@@ -63,22 +63,6 @@ jobs:
                   echo "CCACHE_DIR=$HOME/.ccache" >> $GITHUB_ENV
                   echo "CCACHE_MAXSIZE=2G" >> $GITHUB_ENV
 
-            # 7️⃣ Download previous Magisk output if exists
-            - name: Download previous Magisk output
-              uses: actions/download-artifact@v4
-              with:
-                  name: magisk_output
-                  path: out
-              continue-on-error: true
-
-            # 8️⃣ Download previous native build if exists
-            - name: Download previous native build
-              uses: actions/download-artifact@v4
-              with:
-                  name: native_build
-                  path: native/out
-              continue-on-error: true
-
             # 9️⃣ Build Magisk (full build)
             - name: Build Magisk
               run: python build.py -vr all
