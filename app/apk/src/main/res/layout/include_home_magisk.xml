@@ -15,8 +15,8 @@
 
     </data>
 
-    <com.google.android.material.card.MaterialCardView
-        style="@style/WidgetFoundation.Card"
+    <LinearLayout
+        android:background="#F5F5F5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:focusable="false">
@@ -169,6 +169,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
 
 </layout>
