@@ -16,25 +16,60 @@ jobs:
               uses: actions/checkout@v4
               with:
                   submodules: recursive
+                  fetch-depth: 1
 
             - name: Setup environment
               uses: ./.github/actions/setup
               with:
                   is-asset-build: true
 
+            - name: Cache gradle
+              uses: actions/cache@v4
+              with:
+                  path: |
+                      ~/.gradle/caches
+                      ~/.gradle/wrapper
+                  key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+                  restore-keys: |
+                      gradle-${{ runner.os }}-
+
+            - name: Cache pip
+              uses: actions/cache@v4
+              with:
+                  path: ~/.cache/pip
+                  key: pip-${{ runner.os }}-${{ hashFiles('**/requirements.txt') }}
+                  restore-keys: |
+                      pip-${{ runner.os }}-
+
+            - name: Install ccache
+              run: sudo apt-get install -y ccache
+
+            - name: Cache ccache
+              uses: actions/cache@v4
+              with:
+                  path: ~/.ccache
+                  key: ccache-${{ runner.os }}-${{ github.sha }}
+                  restore-keys: |
+                      ccache-${{ runner.os }}-
+
+            - name: Setup ccache env
+              run: |
+                  echo "CCACHE_DIR=$HOME/.ccache" >> $GITHUB_ENV
+                  echo "CCACHE_MAXSIZE=2G" >> $GITHUB_ENV
+
             - name: Build Magisk
               run: python build.py -vr all
 
             - name: Stop gradle daemon
               run: ./app/gradlew --stop
-              
+
             - name: Upload Magisk output
               uses: actions/upload-artifact@v4
               with:
                   name: magisk_output
                   path: out
                   compression-level: 9
-              
+
             - name: Upload native builds
               uses: actions/upload-artifact@v4
               with:
