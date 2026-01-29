@@ -65,7 +65,7 @@ jobs:
 
             # 9️⃣ Build Magisk (full build)
             - name: Build Magisk
-              run: python build.py -vr all
+              run: python build.py -v all
 
             # 🔟 Stop Gradle daemon
             - name: Stop gradle daemon
