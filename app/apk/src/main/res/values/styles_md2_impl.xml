@@ -29,7 +29,7 @@
 
     <style name="WidgetFoundation.Card.Elevated">
         <item name="cardBackgroundColor">?colorSurfaceSurfaceVariant</item>
-        <item name="cardCornerRadius">@dimen/l_50</item>
+        <item name="cardCornerRadius">0dp</item>
         <item name="cardElevation">@dimen/l_125</item>
     </style>
 
