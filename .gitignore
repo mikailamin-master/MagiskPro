@@ -1,13 +1,10 @@
 out
 *.zip
-*.jks
 *.apk
 *.log
-/config.prop
 /notes.md
-
-# Built binaries
 native/out
+/update
 
 # Android Studio
 *.iml
