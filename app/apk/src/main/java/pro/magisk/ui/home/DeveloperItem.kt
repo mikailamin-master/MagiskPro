@@ -36,7 +36,8 @@ private interface CanyieImpl : Dev {
 sealed class DeveloperItem : Dev {
 
     abstract val items: List<IconLink>
-    val handle get() = "# ${name}".uppercase()
+    open val handle: String
+        get() = "# ${name}".uppercase()
     
     object MA : DeveloperItem(), MAImpl {
         override val handle: String
