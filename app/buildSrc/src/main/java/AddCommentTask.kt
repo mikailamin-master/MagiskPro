@@ -10,6 +10,7 @@ import org.gradle.api.provider.Property
 import org.gradle.api.tasks.*
 import java.io.File
 import java.security.KeyStore
+import java.security.cert.X509Certificate
 import java.util.jar.JarFile
 
 abstract class AddCommentTask : DefaultTask() {
@@ -30,42 +31,43 @@ abstract class AddCommentTask : DefaultTask() {
     abstract val transformationRequest: Property<ArtifactTransformationRequest<AddCommentTask>>
 
     @TaskAction
-    fun taskAction() = transformationRequest.get().submit(this) { artifact ->
+    fun taskAction() =
+        transformationRequest.get().submit(this) { artifact ->
 
-        val inFile = File(artifact.outputFile)
-        val tempFile = outFolder.file("unsigned_${inFile.name}").get().asFile
-        val outFile = outFolder.file(inFile.name).get().asFile
+            val inFile = File(artifact.outputFile)
+            val tempFile = outFolder.file("unsigned_${inFile.name}").get().asFile
+            val outFile = outFolder.file(inFile.name).get().asFile
 
-        val options = ZFileOptions().apply {
-            noTimestamps = true
-            autoSortFiles = true
+            val zOptions = ZFileOptions().apply {
+                noTimestamps = true
+                autoSortFiles = true
+            }
+
+            outFile.parentFile.mkdirs()
+            inFile.copyTo(tempFile, overwrite = true)
+
+            // step 1: zip modify only
+            ZFiles.apk(tempFile, zOptions).use {
+                it.eocdComment = comment.get().toByteArray()
+                it.get(IncrementalPackager.APP_METADATA_ENTRY_PATH)?.delete()
+                it.get(IncrementalPackager.VERSION_CONTROL_INFO_ENTRY_PATH)?.delete()
+                it.get(JarFile.MANIFEST_NAME)?.delete()
+            }
+
+            // step 2: v1 + v2 + v3 signing
+            signApk(
+                inputApk = tempFile,
+                outputApk = outFile,
+                signingConfig = signingConfig.get()
+            )
+
+            tempFile.delete()
+            outFile
         }
 
-        outFile.parentFile.mkdirs()
-        inFile.copyTo(tempFile, overwrite = true)
-
-        // step 1: zip modify only (NO signing here)
-        ZFiles.apk(tempFile, options).use {
-            it.eocdComment = comment.get().toByteArray()
-            it.get(IncrementalPackager.APP_METADATA_ENTRY_PATH)?.delete()
-            it.get(IncrementalPackager.VERSION_CONTROL_INFO_ENTRY_PATH)?.delete()
-            it.get(JarFile.MANIFEST_NAME)?.delete()
-        }
-
-        // step 2: full signing with v1 + v2 + v3
-        signWithV3(
-            apkFile = tempFile,
-            outFile = outFile,
-            signingConfig = signingConfig.get()
-        )
-
-        tempFile.delete()
-        outFile
-    }
-
-    private fun signWithV3(
-        apkFile: File,
-        outFile: File,
+    private fun signApk(
+        inputApk: File,
+        outputApk: File,
         signingConfig: ApkSigningConfig
     ) {
         val keyStore = KeyStore.getInstance(
@@ -81,20 +83,21 @@ abstract class AddCommentTask : DefaultTask() {
             KeyStore.PasswordProtection(signingConfig.keyPassword!!.toCharArray())
         ) as KeyStore.PrivateKeyEntry
 
+        val cert = entry.certificate as X509Certificate
+
         val signerConfig = ApkSigner.SignerConfig.Builder(
             signingConfig.keyAlias!!,
             entry.privateKey,
-            listOf(entry.certificate)
+            listOf(cert)
         ).build()
 
         ApkSigner.Builder(listOf(signerConfig))
-            .setInputApk(apkFile)
-            .setOutputApk(outFile)
+            .setInputApk(inputApk)
+            .setOutputApk(outputApk)
             .setV1SigningEnabled(true)
             .setV2SigningEnabled(true)
             .setV3SigningEnabled(true)
             .setV4SigningEnabled(false)
-            .build()
             .sign()
     }
 }
