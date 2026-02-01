@@ -18,7 +18,7 @@
     <string name="not_available">N/A</string>
     <string name="hide">Hide</string>
     <string name="home_package">Package</string>
-    <string name="home_app_title">MagiskPro Application</string>
+    <string name="home_app_title">Application</string>
     <string name="home_notice_content">Download Magisk ONLY from the official GitHub page. Files from unknown sources can be malicious!</string>
     <string name="home_support_title">Support Us</string>
     <string name="home_follow_title">Follow Us</string>
