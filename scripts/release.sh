@@ -84,9 +84,7 @@ upload() {
   tail -n +3 $NOTES > release.md
 
   # Publish release
-  local release_apk="Magisk-v${ver}.apk"
-  cp $out/app-release.apk $release_apk
-  gh release create --verify-tag $tag -p -t "$title" -F release.md $release_apk $out/app-debug.apk $NOTES
+  gh release create --verify-tag $tag -p -t "$title" -F release.md $out/app-release.apk $out/app-debug.apk $NOTES
 
   rm -f $release_apk release.md
 }

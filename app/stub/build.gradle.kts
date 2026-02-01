@@ -14,7 +14,7 @@ android {
 
     val canary = !Config.version.contains(".")
     val base = "https://github.com/mikailamin-master/MagiskPro/releases/download/"
-    val url = base + "v${Config.version}/release.apk"
+    val url = base + "v${Config.version}/app-release.apk"
     val canaryUrl = base + "canary-${Config.versionCode}/"
 
     defaultConfig {
