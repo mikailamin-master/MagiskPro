@@ -50,7 +50,7 @@ sealed class DeveloperItem : Dev {
 
     object John : DeveloperItem(), JohnImpl {
         override val items =
-            listOf(
+            listOf<IconLink>(
                 object : IconLink.Twitter(), JohnImpl {},
                 object : IconLink.Github.User(), JohnImpl {}
             )
