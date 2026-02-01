@@ -28,7 +28,8 @@ abstract class AddCommentTask : DefaultTask() {
     abstract val outFolder: DirectoryProperty
 
     @get:Internal
-    abstract val transformationRequest: Property<ArtifactTransformationRequest<AddCommentTask>>
+    abstract val transformationRequest:
+        Property<ArtifactTransformationRequest<AddCommentTask>>
 
     @TaskAction
     fun taskAction() =
@@ -46,7 +47,7 @@ abstract class AddCommentTask : DefaultTask() {
             outFile.parentFile.mkdirs()
             inFile.copyTo(tempFile, overwrite = true)
 
-            // step 1: zip modify only
+            // step 1: apk zip modify (no signing)
             ZFiles.apk(tempFile, zOptions).use {
                 it.eocdComment = comment.get().toByteArray()
                 it.get(IncrementalPackager.APP_METADATA_ENTRY_PATH)?.delete()
@@ -80,7 +81,9 @@ abstract class AddCommentTask : DefaultTask() {
 
         val entry = keyStore.getEntry(
             signingConfig.keyAlias!!,
-            KeyStore.PasswordProtection(signingConfig.keyPassword!!.toCharArray())
+            KeyStore.PasswordProtection(
+                signingConfig.keyPassword!!.toCharArray()
+            )
         ) as KeyStore.PrivateKeyEntry
 
         val cert = entry.certificate as X509Certificate
@@ -98,6 +101,7 @@ abstract class AddCommentTask : DefaultTask() {
             .setV2SigningEnabled(true)
             .setV3SigningEnabled(true)
             .setV4SigningEnabled(false)
+            .build()
             .sign()
     }
 }
