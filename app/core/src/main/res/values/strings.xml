@@ -49,12 +49,12 @@
     <string name="flash_screen_title">Installation</string>
 
     <!--Superuser-->
-    <string name="su_request_title">Superuser request</string>
+    <string name="su_request_title">Requested for superuser!</string>
     <string name="touch_filtered_warning">Because an app is obscuring a Superuser request, Magisk can\'t verify your response.</string>
-    <string name="deny">Deny</string>
+    <string name="deny">Reject</string>
     <string name="prompt">Prompt</string>
     <string name="restrict">Restrict</string>
-    <string name="grant">Grant</string>
+    <string name="grant">Accept</string>
     <string name="su_warning">Grants full access to your device.\nDeny if you\'re not sure!</string>
     <string name="forever">Forever</string>
     <string name="once">Once</string>
@@ -62,8 +62,8 @@
     <string name="twentymin">20 mins</string>
     <string name="thirtymin">30 mins</string>
     <string name="sixtymin">60 mins</string>
-    <string name="su_allow_toast">%1$s was granted Superuser rights</string>
-    <string name="su_deny_toast">%1$s was denied Superuser rights</string>
+    <string name="su_allow_toast">%1$s Authorised!</string>
+    <string name="su_deny_toast">%1$s Rejected!</string>
     <string name="su_snack_grant">Superuser rights of %1$s are granted</string>
     <string name="su_snack_deny">Superuser rights of %1$s are denied</string>
     <string name="su_snack_notif_on">Notifications of %1$s are enabled</string>
@@ -125,9 +125,9 @@
     <string name="settings_dark_mode_dark">Always dark</string>
     <string name="settings_download_path_title">Download path</string>
     <string name="settings_download_path_message">Files will be saved to %1$s</string>
-    <string name="settings_hide_app_title">Hide the Magisk app</string>
+    <string name="settings_hide_app_title">Hide the Magisk app (No need)</string>
     <string name="settings_hide_app_summary">Install a proxy app with a random package ID and custom app label</string>
-    <string name="settings_restore_app_title">Restore the Magisk app</string>
+    <string name="settings_restore_app_title">Restore the Magisk app (recommended)</string>
     <string name="settings_restore_app_summary">Unhide the app and restore the original APK</string>
     <string name="language">Language</string>
     <string name="system_default">(System default)</string>

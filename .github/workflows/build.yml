@@ -64,7 +64,10 @@ jobs:
                   echo "CCACHE_MAXSIZE=2G" >> $GITHUB_ENV
 
             # 9️⃣ Build Magisk (full build)
-            - name: Build Magisk
+            - name: Build Magisk Release
+              run: python build.py -vr all
+              
+            - name: Build Magisk Debug
               run: python build.py -v all
 
             # 🔟 Stop Gradle daemon
