@@ -67,20 +67,26 @@ jobs:
             - name: Build Magisk Release
               run: python build.py -vr all
               
+            - name: Upload Magisk Release
+              uses: actions/upload-artifact@v4
+              with:
+                  name: magisk_release
+                  path: out/app-release.apk
+                  compression-level: 9
+              
             - name: Build Magisk Debug
               run: python build.py -v all
+            
+            - name: Upload Magisk Debug
+              uses: actions/upload-artifact@v4
+              with:
+                  name: magisk_debug
+                  path: out/app-debug.apk
+                  compression-level: 9
 
             # 🔟 Stop Gradle daemon
             - name: Stop gradle daemon
               run: ./app/gradlew --stop
-
-            # 1️⃣1️⃣ Upload Magisk output
-            - name: Upload Magisk output
-              uses: actions/upload-artifact@v4
-              with:
-                  name: magisk_output
-                  path: out
-                  compression-level: 9
 
             # 1️⃣2️⃣ Upload native builds
             - name: Upload native builds

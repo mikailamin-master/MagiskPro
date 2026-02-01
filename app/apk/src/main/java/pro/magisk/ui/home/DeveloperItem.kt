@@ -9,6 +9,10 @@ interface Dev {
     val name: String
 }
 
+private interface MAImpl : Dev {
+    override val name get() = "mikailamin-master"
+}
+
 private interface JohnImpl : Dev {
     override val name get() = "topjohnwu"
 }
@@ -32,13 +36,23 @@ private interface CanyieImpl : Dev {
 sealed class DeveloperItem : Dev {
 
     abstract val items: List<IconLink>
-    val handle get() = "@${name}"
+    val handle get() = "# ${name}".uppercase()
+    
+    object MA : DeveloperItem(), MAImpl {
+        override val handle: String
+            get() = "MIKAILAMIN"
+
+        override val items =
+            listOf(
+                IconLink.Github.Project
+            )
+    }
 
     object John : DeveloperItem(), JohnImpl {
         override val items =
             listOf(
                 object : IconLink.Twitter(), JohnImpl {},
-                IconLink.Github.Project
+                object : IconLink.Github.User(), JohnImpl {}
             )
     }
 

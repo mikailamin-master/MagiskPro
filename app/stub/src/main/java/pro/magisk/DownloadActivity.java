@@ -99,8 +99,7 @@ public class DownloadActivity extends Activity {
                 .setCancelable(false)
                 .setTitle(APP_NAME)
                 .setMessage(getString(upgrade_msg))
-                .setPositiveButton(yes, (d, w) -> dlAPK())
-                .setNegativeButton(no, (d, w) -> finish())
+                .setPositiveButton(yes, (d, w) -> finish())
                 .show();
     }
 
