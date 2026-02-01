@@ -13,5 +13,5 @@
 
     <dimen name="r1">8dp</dimen>
 
-    <dimen name="internal_action_bar_size">56dp</dimen>
+    <dimen name="internal_action_bar_size">52dp</dimen>
 </resources>

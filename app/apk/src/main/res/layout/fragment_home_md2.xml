@@ -110,7 +110,7 @@
             <Space
                 goneUnless="@{Info.env.isActive}"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/l1" />
+                android:layout_height="@dimen/l_25" />
 
             <Button
                 style="@style/WidgetFoundation.Button.Outlined.Error"
@@ -123,7 +123,7 @@
                 android:text="@string/uninstall_magisk_title"
                 android:textAllCaps="false"
                 android:textSize="12sp"
-                app:cornerRadius="@dimen/r1"
+                app:cornerRadius="0dp"
                 app:icon="@drawable/ic_delete_md2" />
                 
             <com.google.android.material.card.MaterialCardView
@@ -132,6 +132,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:layout_margin="@dimen/l1"
+                android:layout_marginTop="@dimen/l_25"
                 android:focusable="false">
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -161,6 +162,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:layout_margin="@dimen/l1"
+                android:layout_marginTop="@dimen/l_25"
                 android:focusable="false">
 
                 <LinearLayout
