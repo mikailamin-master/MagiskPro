@@ -144,7 +144,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/l1"
                         android:layout_marginEnd="@dimen/l1"
-                        android:text="Project Owner"
+                        android:text="Developer"
                         android:textAppearance="@style/AppearanceFoundation.Title" />
                     <include
                         item="@{DeveloperItem.MA.INSTANCE}"
