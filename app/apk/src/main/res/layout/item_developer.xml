@@ -24,18 +24,13 @@
         android:paddingEnd="@dimen/l1">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="# {item.handle}"
+            android:layout_weight="1"
+            android:text="@{item.handle}"
             android:textAppearance="@style/AppearanceFoundation.Caption"
             android:textStyle="bold"
-            tools:text="\@topjohnwu" />
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
-        </LinearLayout>
-
+            tools:text="\@mikailamin" />
         <androidx.recyclerview.widget.RecyclerView
             app:items="@{item.items}"
             app:extraBindings="@{viewModel.extraBindings}"
