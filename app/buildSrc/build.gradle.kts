@@ -25,4 +25,5 @@ dependencies {
     implementation(libs.lsparanoid.plugin)
     implementation(libs.moshi.plugin)
     implementation(libs.jgit)
+    implementation("com.android.tools.build:apksig:8.2.2")
 }

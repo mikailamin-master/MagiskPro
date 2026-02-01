@@ -1,24 +1,19 @@
+import com.android.apksig.ApkSigner
 import com.android.build.api.artifact.ArtifactTransformationRequest
 import com.android.build.api.dsl.ApkSigningConfig
 import com.android.builder.internal.packaging.IncrementalPackager
-import com.android.tools.build.apkzlib.sign.SigningExtension
-import com.android.tools.build.apkzlib.sign.SigningOptions
 import com.android.tools.build.apkzlib.zfile.ZFiles
 import com.android.tools.build.apkzlib.zip.ZFileOptions
 import org.gradle.api.DefaultTask
 import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.provider.Property
-import org.gradle.api.tasks.Input
-import org.gradle.api.tasks.InputFiles
-import org.gradle.api.tasks.Internal
-import org.gradle.api.tasks.OutputDirectory
-import org.gradle.api.tasks.TaskAction
+import org.gradle.api.tasks.*
 import java.io.File
 import java.security.KeyStore
-import java.security.cert.X509Certificate
 import java.util.jar.JarFile
 
-abstract class AddCommentTask: DefaultTask() {
+abstract class AddCommentTask : DefaultTask() {
+
     @get:Input
     abstract val comment: Property<String>
 
@@ -36,42 +31,70 @@ abstract class AddCommentTask: DefaultTask() {
 
     @TaskAction
     fun taskAction() = transformationRequest.get().submit(this) { artifact ->
+
         val inFile = File(artifact.outputFile)
+        val tempFile = outFolder.file("unsigned_${inFile.name}").get().asFile
         val outFile = outFolder.file(inFile.name).get().asFile
 
-        val privateKey = signingConfig.get().getPrivateKey()
-        val signingOptions = SigningOptions.builder()
-            .setMinSdkVersion(0)
-            .setV1SigningEnabled(true)
-            .setV2SigningEnabled(true)
-            .setKey(privateKey.privateKey)
-            .setCertificates(privateKey.certificate as X509Certificate)
-            .setValidation(SigningOptions.Validation.ASSUME_INVALID)
-            .build()
         val options = ZFileOptions().apply {
             noTimestamps = true
             autoSortFiles = true
         }
-        outFile.parentFile?.mkdirs()
-        inFile.copyTo(outFile, overwrite = true)
-        ZFiles.apk(outFile, options).use {
-            SigningExtension(signingOptions).register(it)
+
+        outFile.parentFile.mkdirs()
+        inFile.copyTo(tempFile, overwrite = true)
+
+        // step 1: zip modify only (NO signing here)
+        ZFiles.apk(tempFile, options).use {
             it.eocdComment = comment.get().toByteArray()
             it.get(IncrementalPackager.APP_METADATA_ENTRY_PATH)?.delete()
             it.get(IncrementalPackager.VERSION_CONTROL_INFO_ENTRY_PATH)?.delete()
             it.get(JarFile.MANIFEST_NAME)?.delete()
         }
 
+        // step 2: full signing with v1 + v2 + v3
+        signWithV3(
+            apkFile = tempFile,
+            outFile = outFile,
+            signingConfig = signingConfig.get()
+        )
+
+        tempFile.delete()
         outFile
     }
 
-    private fun ApkSigningConfig.getPrivateKey(): KeyStore.PrivateKeyEntry {
-        val keyStore = KeyStore.getInstance(storeType ?: KeyStore.getDefaultType())
-        storeFile!!.inputStream().use {
-            keyStore.load(it, storePassword!!.toCharArray())
+    private fun signWithV3(
+        apkFile: File,
+        outFile: File,
+        signingConfig: ApkSigningConfig
+    ) {
+        val keyStore = KeyStore.getInstance(
+            signingConfig.storeType ?: KeyStore.getDefaultType()
+        )
+
+        signingConfig.storeFile!!.inputStream().use {
+            keyStore.load(it, signingConfig.storePassword!!.toCharArray())
         }
-        val keyPwdArray = keyPassword!!.toCharArray()
-        val entry = keyStore.getEntry(keyAlias!!, KeyStore.PasswordProtection(keyPwdArray))
-        return entry as KeyStore.PrivateKeyEntry
+
+        val entry = keyStore.getEntry(
+            signingConfig.keyAlias!!,
+            KeyStore.PasswordProtection(signingConfig.keyPassword!!.toCharArray())
+        ) as KeyStore.PrivateKeyEntry
+
+        val signerConfig = ApkSigner.SignerConfig.Builder(
+            signingConfig.keyAlias!!,
+            entry.privateKey,
+            listOf(entry.certificate)
+        ).build()
+
+        ApkSigner.Builder(listOf(signerConfig))
+            .setInputApk(apkFile)
+            .setOutputApk(outFile)
+            .setV1SigningEnabled(true)
+            .setV2SigningEnabled(true)
+            .setV3SigningEnabled(true)
+            .setV4SigningEnabled(false)
+            .build()
+            .sign()
     }
 }
