@@ -31,8 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
-            android:orientation="vertical"
-            android:paddingTop="@dimen/l1">
+            android:orientation="vertical">
 
             <Button
                 style="@style/WidgetFoundation.Button"

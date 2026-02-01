@@ -25,6 +25,7 @@
 
     <style name="WidgetFoundation.Card.Primary">
         <item name="cardBackgroundColor">?colorPrimary</item>
+        <item name="cardCornerRadius">0dp</item>
     </style>
 
     <style name="WidgetFoundation.Card.Elevated">
@@ -37,6 +38,7 @@
     <style name="WidgetFoundation.Button" parent="Widget.MaterialComponents.Button">
         <item name="android:textStyle">bold</item>
         <item name="iconGravity">textStart</item>
+        <item name="cornerRadius">0dp</item>
         <item name="iconPadding">@dimen/l_50</item>
     </style>
 
@@ -45,6 +47,7 @@
         <item name="iconGravity">textStart</item>
         <item name="iconPadding">@dimen/l_50</item>
         <item name="strokeColor">?colorPrimary</item>
+        <item name="cornerRadius">0dp</item>
         <item name="android:textColor">?colorPrimary</item>
     </style>
 
@@ -53,6 +56,7 @@
         <item name="rippleColor">@color/color_error_transient</item>
         <item name="android:textColor">@color/color_error_transient</item>
         <item name="iconTint">@color/color_error_transient</item>
+        <item name="cornerRadius">0dp</item>
     </style>
 
     <style name="WidgetFoundation.Button.Text" parent="Widget.MaterialComponents.Button.TextButton">
