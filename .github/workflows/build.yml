@@ -63,6 +63,16 @@ jobs:
                   echo "CCACHE_DIR=$HOME/.ccache" >> $GITHUB_ENV
                   echo "CCACHE_MAXSIZE=2G" >> $GITHUB_ENV
 
+            - name: Build Magisk Debug
+              run: python build.py -v all
+            
+            - name: Upload Magisk Debug
+              uses: actions/upload-artifact@v4
+              with:
+                  name: magisk_debug
+                  path: out/app-debug.apk
+                  compression-level: 9
+
             # 9️⃣ Build Magisk (full build)
             - name: Build Magisk Release
               run: python build.py -vr all
@@ -74,16 +84,6 @@ jobs:
                   path: out/app-release.apk
                   compression-level: 9
               
-            - name: Build Magisk Debug
-              run: python build.py -v all
-            
-            - name: Upload Magisk Debug
-              uses: actions/upload-artifact@v4
-              with:
-                  name: magisk_debug
-                  path: out/app-debug.apk
-                  compression-level: 9
-
             # 🔟 Stop Gradle daemon
             - name: Stop gradle daemon
               run: ./app/gradlew --stop
