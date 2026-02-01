@@ -4,7 +4,7 @@ out
 *.log
 /notes.md
 native/out
-/update
+/uu
 
 # Android Studio
 *.iml

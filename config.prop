@@ -19,10 +19,10 @@ abiList=armeabi-v7a,x86,arm64-v8a,x86_64
 #####################################################
 
 # Path to keystore file
-keyStore=app/key.jks
+keyStore=app/main_key.jks
 # Keystore password
-keyStorePass=magisk
+keyStorePass=superman
 # The desired key alias in the keystore
-keyAlias=magisk
+keyAlias=mikailamin
 # Password of specified key alias
-keyPass=magisk
+keyPass=superman
