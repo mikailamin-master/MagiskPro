@@ -66,6 +66,6 @@ class MagiskPlugin : Plugin<Project> {
         // Commandline override
         findProperty("abiList")?.let { props.put("abiList", it) }
 
-        commitHash = "MasterEdition"
+        commitHash = "ProEdition"
     }
 }
