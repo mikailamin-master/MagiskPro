@@ -41,7 +41,7 @@ sealed class DeveloperItem : Dev {
     
     object MA : DeveloperItem(), MAImpl {
         override val handle: String
-            get() = "# MIKAILAMIN (OWNER)"
+            get() = "# MIKAILAMIN"
 
         override val items =
             listOf(

@@ -103,14 +103,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/l1"
-                android:layout_marginTop="@dimen/l1"
-                android:layout_marginEnd="@dimen/l1"
-                app:layout_constraintTop_toBottomOf="@+id/home_magisk_wrapper" />
-
-            <Space
-                goneUnless="@{Info.env.isActive}"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/l_50" />
+                android:layout_marginTop="@dimen/l_50"
+                android:layout_marginEnd="@dimen/l1" />
 
             <Button
                 style="@style/WidgetFoundation.Button.Outlined.Error"
@@ -119,6 +113,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/l1"
                 android:layout_marginEnd="@dimen/l1"
+                android:layout_marginTop="@dimen/l_75"
                 android:onClick="@{() -> viewModel.onDeletePressed()}"
                 android:text="@string/uninstall_magisk_title"
                 android:textAllCaps="false"
@@ -132,7 +127,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/l1"
                 android:layout_marginEnd="@dimen/l1"
-                android:layout_marginTop="@dimen/l_25"
+                android:layout_marginTop="@dimen/l_75"
+                android:layout_marginBottom="@dimen/l_25"
                 android:focusable="false">
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -162,7 +158,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/l1"
                 android:layout_marginEnd="@dimen/l1"
-                android:layout_marginTop="@dimen/l_25"
+                android:layout_marginTop="@dimen/l_75"
+                android:layout_marginBottom="@dimen/l_25"
                 android:focusable="false">
 
                 <LinearLayout
