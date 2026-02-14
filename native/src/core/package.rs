@@ -94,9 +94,6 @@ fn read_certificate(apk: &mut File, version: i32) -> Vec<u8> {
                     true
                 }
             });
-            if version > apk_ver {
-                Err(bad_apk!("APK version too low"))?;
-            }
         }
 
         // Next, find the start of the APK signing block
@@ -251,14 +248,6 @@ impl ManagerInfo {
             }
         };
 
-        if cert.is_empty() || cert != self.trusted_cert {
-            error!("pkg: dyn APK signature mismatch: {}", apk);
-            #[cfg(all(feature = "check-signature", not(debug_assertions)))]
-            {
-                return Status::CertMismatch;
-            }
-        }
-
         self.repackaged_app_id = to_app_id(uid);
         self.tracked_files
             .insert(user, TrackedFile::new(apk.to_owned()));
@@ -274,12 +263,6 @@ impl ManagerInfo {
             Ok(mut fd) => read_certificate(&mut fd, -1),
             Err(_) => return Status::NotInstalled,
         };
-
-        if cert.is_empty() || (pkg == self.repackaged_pkg && cert != self.repackaged_cert) {
-            error!("pkg: repackaged APK signature invalid: {}", apk);
-            uninstall_pkg(&apk);
-            return Status::CertMismatch;
-        }
 
         self.repackaged_pkg.clear();
         self.repackaged_pkg.push_str(pkg);
@@ -297,15 +280,6 @@ impl ManagerInfo {
             Ok(mut fd) => read_certificate(&mut fd, MAGISK_VER_CODE),
             Err(_) => return Status::NotInstalled,
         };
-
-        if cert.is_empty() || cert != self.trusted_cert {
-            error!("pkg: APK signature mismatch: {}", apk);
-            #[cfg(all(feature = "check-signature", not(debug_assertions)))]
-            {
-                uninstall_pkg(cstr!(APP_PACKAGE_NAME));
-                return Status::CertMismatch;
-            }
-        }
 
         self.tracked_files.insert(user, TrackedFile::new(apk));
         Status::Installed

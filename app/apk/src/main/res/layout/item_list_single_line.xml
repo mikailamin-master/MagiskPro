@@ -6,11 +6,11 @@
 
         <variable
             name="item"
-            type="com.topjohnwu.magisk.view.MagiskDialog.DialogItem" />
+            type="pro.magisk.view.MagiskDialog.DialogItem" />
 
         <variable
             name="listener"
-            type="com.topjohnwu.magisk.view.MagiskDialog.DialogClickListener" />
+            type="pro.magisk.view.MagiskDialog.DialogClickListener" />
 
     </data>
 
