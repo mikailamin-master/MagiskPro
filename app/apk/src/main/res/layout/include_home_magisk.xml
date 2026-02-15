@@ -31,6 +31,7 @@
             tools:layout_gravity="center">
 
             <ImageView
+                android:visibility="gone"
                 android:id="@+id/home_magisk_icon"
                 style="@style/WidgetFoundation.Icon.Primary"
                 android:padding="@dimen/l_25"
@@ -43,7 +44,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/l1"
-                android:text="@string/magisk"
+                android:text="MagiskPro"
                 android:textAppearance="@style/AppearanceFoundation.Title"
                 android:textColor="?colorPrimary"
                 android:maxLines="1"

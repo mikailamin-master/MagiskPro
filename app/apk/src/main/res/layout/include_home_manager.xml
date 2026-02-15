@@ -29,6 +29,7 @@
             tools:layout_gravity="center">
 
             <ImageView
+                android:visibility="gone"
                 android:id="@+id/home_manager_icon"
                 style="@style/WidgetFoundation.Icon.Primary"
                 android:padding="@dimen/l_50"
