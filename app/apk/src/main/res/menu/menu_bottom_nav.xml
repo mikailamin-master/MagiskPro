@@ -5,25 +5,25 @@
     <item
         android:id="@+id/homeFragment"
         android:icon="@drawable/ic_home_md2"
-        android:title="@string/section_home"
+        android:title="HOME"
         tools:showAsAction="always" />
 
     <item
         android:id="@+id/superuserFragment"
         android:icon="@drawable/ic_superuser_md2"
-        android:title="@string/superuser"
+        android:title="SUPERUSERS"
         tools:showAsAction="always" />
 
     <item
         android:id="@+id/logFragment"
         android:icon="@drawable/ic_bug_md2"
-        android:title="@string/logs"
+        android:title="LOGS"
         tools:showAsAction="always" />
 
     <item
         android:id="@+id/modulesFragment"
         android:icon="@drawable/ic_module_md2"
-        android:title="@string/modules"
+        android:title="MODULES"
         tools:showAsAction="always" />
 
 </menu>

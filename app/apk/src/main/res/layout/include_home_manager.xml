@@ -41,7 +41,7 @@
                 android:id="@+id/home_manager_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/l1"
+                android:padding="@dimen/l_50"
                 android:text="@string/home_app_title"
                 android:textAppearance="@style/AppearanceFoundation.Title"
                 android:textColor="?colorPrimary"
@@ -67,7 +67,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="@{() -> viewModel.onManagerPressed()}"
-                    android:text="@string/update"
+                    android:text="UPDATE"
                     android:textAllCaps="false"
                     android:layout_gravity="end"
                     app:icon="@drawable/ic_update_md2" />
@@ -79,7 +79,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:onClick="@{() -> viewModel.onManagerPressed()}"
-                    android:text="@string/install"
+                    android:text="INSTALL"
                     android:textAllCaps="false"
                     app:icon="@drawable/ic_install"/>
 
