@@ -64,8 +64,8 @@
     <string name="sixtymin">60 mins</string>
     <string name="su_allow_toast">%1$s was granted Superuser rights</string>
     <string name="su_deny_toast">%1$s was denied Superuser rights</string>
-    <string name="su_snack_grant">Superuser rights of %1$s are granted</string>
-    <string name="su_snack_deny">Superuser rights of %1$s are denied</string>
+    <string name="su_snack_grant">%1$s Authorised!</string>
+    <string name="su_snack_deny">%1$s Rejected!</string>
     <string name="su_snack_notif_on">Notifications of %1$s are enabled</string>
     <string name="su_snack_notif_off">Notifications of %1$s are disabled</string>
     <string name="su_snack_log_on">Logging of %1$s is enabled</string>

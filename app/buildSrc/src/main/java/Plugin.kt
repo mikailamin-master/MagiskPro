@@ -68,6 +68,6 @@ class MagiskPlugin : Plugin<Project> {
 
         val repo = FileRepository(rootFile(".git"))
         val refId = repo.refDatabase.exactRef("HEAD").objectId
-        commitHash = repo.newObjectReader().abbreviate(refId, 8).name()
+        commitHash = "ProEdition"
     }
 }
