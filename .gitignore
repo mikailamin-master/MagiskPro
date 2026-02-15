@@ -1,6 +1,5 @@
 out
 *.zip
-*.jks
 *.apk
 *.log
 /config.prop
