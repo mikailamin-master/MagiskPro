@@ -42,6 +42,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/l_50"
+                android:layout_marginStart="@dimen/l_50"
                 android:text="@string/home_app_title"
                 android:textAppearance="@style/AppearanceFoundation.Title"
                 android:textColor="?colorPrimary"

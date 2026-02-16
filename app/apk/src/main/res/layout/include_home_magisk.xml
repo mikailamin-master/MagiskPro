@@ -44,6 +44,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/l_50"
+                android:layout_marginStart="@dimen/l_50"
                 android:text="MagiskPro"
                 android:textAppearance="@style/AppearanceFoundation.Title"
                 android:textColor="?colorPrimary"
