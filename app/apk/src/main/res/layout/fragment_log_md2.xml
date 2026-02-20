@@ -30,12 +30,12 @@
             android:layout_gravity="bottom|end"
             android:layout_marginStart="@dimen/l1"
             android:layout_marginEnd="@dimen/l1"
-            android:layout_marginBottom="72dp"
+            android:layout_marginBottom="@dimen/internal_bottom_navigation_action_margin"
             app:layout_fitsSystemWindowsInsets="bottom"
             app:backgroundTint="?colorSurfaceSurfaceVariant"
             app:srcCompat="@drawable/ic_folder_list"
             app:tint="?colorPrimary"
-            tools:layout_marginBottom="64dp" />
+            tools:layout_marginBottom="@dimen/internal_bottom_navigation_action_margin" />
 
         <com.google.android.material.circularreveal.cardview.CircularRevealCardView
             android:id="@+id/log_filter"
@@ -44,8 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="bottom"
-            android:visibility="invisible"
-            app:cardCornerRadius="0dp">
+            android:visibility="invisible">
 
             <include
                 android:id="@+id/log_filter_superuser"

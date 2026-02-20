@@ -75,12 +75,13 @@ abstract class UIActivity<Binding : ViewDataBinding>
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             window?.decorView?.post {
-                // If navigation bar is short enough (gesture navigation enabled), make it transparent
+                // If navigation bar is short enough (gesture navigation enabled), keep palette surface color
                 if ((window.decorView.rootWindowInsets?.systemWindowInsetBottom
                         ?: 0) < Resources.getSystem().displayMetrics.density * 40) {
-                    window.navigationBarColor = Color.TRANSPARENT
+                    val navigationColor = Color.TRANSPARENT
+                    window.navigationBarColor = navigationColor
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                        window.navigationBarDividerColor = Color.TRANSPARENT
+                        window.navigationBarDividerColor = navigationColor
                     }
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                         window.isNavigationBarContrastEnforced = false

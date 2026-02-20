@@ -33,6 +33,9 @@
                 android:layout_width="match_parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_scrollFlags="noScroll"
+                app:contentInsetStart="24dp"
+                app:contentInsetStartWithNavigation="14dp"
+                app:contentInsetEnd="16dp"
                 tools:layout_marginTop="24dp"
                 tools:title="Home" />
 
@@ -45,6 +48,7 @@
             android:layout_gravity="bottom|center_horizontal"
             android:fitsSystemWindows="false"
             android:paddingBottom="0dp"
+            app:backgroundTint="?colorSurface"
             app:fitsSystemWindowsInsets="start|end|bottom"
             app:itemHorizontalTranslationEnabled="false"
             app:itemIconTint="@color/color_menu_tint"

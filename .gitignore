@@ -10,3 +10,6 @@ native/out
 # Android Studio
 *.iml
 .idea
+
+/ondk.tar.xz
+/local_ndk.py

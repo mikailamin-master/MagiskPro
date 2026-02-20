@@ -1,14 +1,14 @@
 <resources>
 
     <!--Sections-->
-    <string name="modules">Manage magisk modules</string>
-    <string name="superuser">Manage superuser access!</string>
+    <string name="modules">Manage Magisk modules</string>
+    <string name="superuser">Manage superuser access</string>
     <string name="logs">MagiskPro logs</string>
     <string name="settings">Manage settings</string>
     <string name="install">Install MagiskPro</string>
     <string name="section_home">Welcome to MagiskPro</string>
-    <string name="section_theme">Select themes what you want!</string>
-    <string name="denylist">Manage denyList!</string>
+    <string name="section_theme">Select the theme you want</string>
+    <string name="denylist">Manage DenyList</string>
 
     <!--Home-->
     <string name="no_connection">No connection available</string>
@@ -119,7 +119,7 @@
 
     <!--Settings-->
     <string name="settings_dark_mode_title">Theme mode</string>
-    <string name="settings_dark_mode_message">Select mode which best suits your style!</string>
+    <string name="settings_dark_mode_message">Select the mode that best suits your style.</string>
     <string name="settings_dark_mode_light">Always light</string>
     <string name="settings_dark_mode_system">Follow system</string>
     <string name="settings_dark_mode_dark">Always dark</string>

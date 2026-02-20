@@ -21,8 +21,6 @@
         android:layout_height="wrap_content"
         android:onClick="@{() -> viewModel.saveTheme(theme)}"
         app:cardBackgroundColor="@android:color/transparent"
-        app:strokeColor="?colorPrimaryVariant"
-        app:strokeWidth="1.5dp"
         tools:layout_gravity="center">
 
         <androidx.constraintlayout.widget.ConstraintLayout

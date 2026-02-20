@@ -23,7 +23,7 @@
         android:text="@string/module_action_install_external"
         android:textAllCaps="false"
         android:textSize="12sp"
-        app:cornerRadius="@dimen/r1"
+        app:cornerRadius="@dimen/dialog_corner_radius"
         app:icon="@drawable/ic_module_storage_md2" />
 
 </layout>
