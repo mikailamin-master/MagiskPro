@@ -1,10 +1,10 @@
 use crate::consts::{APP_PACKAGE_NAME, MAGISK_VER_CODE};
 use crate::daemon::{AID_APP_END, AID_APP_START, AID_USER_OFFSET, MagiskD, to_app_id};
-use crate::ffi::{DbEntryKey, get_magisk_tmp, install_apk, uninstall_pkg};
+use crate::ffi::{DbEntryKey, get_magisk_tmp, install_apk};
 use base::WalkResult::{Abort, Continue, Skip};
 use base::{
     BufReadExt, Directory, FsPathBuilder, LoggedResult, ReadExt, ResultExt, Utf8CStrBuf,
-    Utf8CString, cstr, error, fd_get_attr, warn,
+    Utf8CString, cstr, fd_get_attr, warn,
 };
 use bit_set::BitSet;
 use nix::fcntl::OFlag;
@@ -172,7 +172,6 @@ fn find_apk_path(pkg: &str) -> LoggedResult<Utf8CString> {
 enum Status {
     Installed,
     NotInstalled,
-    CertMismatch,
 }
 
 pub struct ManagerInfo {
@@ -235,7 +234,7 @@ impl ManagerInfo {
             .join_path("dyn")
             .join_path("current.apk");
         let uid: i32;
-        let cert = match apk.open(OFlag::O_RDONLY | OFlag::O_CLOEXEC) {
+        match apk.open(OFlag::O_RDONLY | OFlag::O_CLOEXEC) {
             Ok(mut fd) => {
                 uid = fd_get_attr(fd.as_raw_fd())
                     .map(|attr| attr.st.st_uid as i32)
@@ -276,7 +275,7 @@ impl ManagerInfo {
             return Status::NotInstalled;
         };
 
-        let cert = match apk.open(OFlag::O_RDONLY | OFlag::O_CLOEXEC) {
+        match apk.open(OFlag::O_RDONLY | OFlag::O_CLOEXEC) {
             Ok(mut fd) => read_certificate(&mut fd, MAGISK_VER_CODE),
             Err(_) => return Status::NotInstalled,
         };
@@ -307,7 +306,7 @@ impl ManagerInfo {
         }
     }
 
-    fn get_manager(&mut self, daemon: &MagiskD, user: i32, mut install: bool) -> (i32, &str) {
+    fn get_manager(&mut self, daemon: &MagiskD, user: i32, install: bool) -> (i32, &str) {
         let db_pkg = daemon.get_db_string(DbEntryKey::SuManager);
 
         // If database changed, always re-check files
@@ -370,10 +369,6 @@ impl ManagerInfo {
                 Status::NotInstalled => {
                     daemon.rm_db_string(DbEntryKey::SuManager).ok();
                 }
-                Status::CertMismatch => {
-                    install = true;
-                    daemon.rm_db_string(DbEntryKey::SuManager).ok();
-                }
             }
         }
 
@@ -389,7 +384,6 @@ impl ManagerInfo {
                     (uid, APP_PACKAGE_NAME)
                 };
             }
-            Status::CertMismatch => install = true,
             Status::NotInstalled => {}
         }
 

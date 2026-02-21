@@ -51,6 +51,7 @@
             app:backgroundTint="?colorSurface"
             app:fitsSystemWindowsInsets="start|end|bottom"
             app:itemHorizontalTranslationEnabled="false"
+            app:itemActiveIndicatorStyle="@null"
             app:itemIconTint="@color/color_menu_tint"
             app:itemRippleColor="?colorPrimary"
             app:itemTextAppearanceActive="@style/AppearanceFoundation.Tiny.Bold"

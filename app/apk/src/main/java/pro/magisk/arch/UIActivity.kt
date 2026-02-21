@@ -7,6 +7,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.res.use
@@ -108,12 +109,15 @@ abstract class UIActivity<Binding : ViewDataBinding>
         binding.root.rootView.accessibilityDelegate = delegate
     }
 
+    @Suppress("UNUSED_PARAMETER")
     fun showSnackbar(
         message: CharSequence,
         length: Int = Snackbar.LENGTH_SHORT,
         builder: Snackbar.() -> Unit = {}
-    ) = Snackbar.make(snackbarView, message, length)
-        .setAnchorView(snackbarAnchorView).apply(builder).show()
+    ) {
+        val toastLength = if (length == Snackbar.LENGTH_LONG) Toast.LENGTH_LONG else Toast.LENGTH_SHORT
+        Toast.makeText(this, message, toastLength).show()
+    }
 
     override fun onResume() {
         super.onResume()
