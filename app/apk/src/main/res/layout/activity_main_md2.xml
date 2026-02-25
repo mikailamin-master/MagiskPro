@@ -6,57 +6,51 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:consumeSystemWindowsInsets="start|end"
-        app:edgeToEdge="true"
-        app:fitsSystemWindowsInsets="start|end"
         tools:ignore="RtlHardcoded">
 
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/main_nav_host"
-            android:name="androidx.navigation.fragment.NavHostFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:defaultNavHost="true"
-            app:navGraph="@navigation/main" />
-
+        <!-- AppBar -->
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/main_toolbar_wrapper"
             style="@style/WidgetFoundation.Appbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:fitsSystemWindowsInsets="top">
+            android:layout_height="wrap_content">
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/main_toolbar"
                 style="@style/WidgetFoundation.Toolbar"
                 android:layout_width="match_parent"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_height="?attr/actionBarSize"
                 app:layout_scrollFlags="noScroll"
-                app:contentInsetStart="24dp"
-                app:contentInsetStartWithNavigation="14dp"
-                app:contentInsetEnd="20dp"
-                tools:layout_marginTop="24dp"
                 tools:title="Home" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
+        <!-- Content -->
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/main_nav_host"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/internal_bottom_navigation_size"
+            app:defaultNavHost="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:navGraph="@navigation/main" />
+
+        <!-- Bottom Navigation -->
         <pro.magisk.widget.ConcealableBottomNavigationView
             android:id="@+id/main_navigation"
             android:layout_width="match_parent"
             android:layout_height="@dimen/internal_bottom_navigation_size"
-            android:layout_gravity="bottom|center_horizontal"
-            android:fitsSystemWindows="false"
+            android:layout_gravity="bottom"
             android:minHeight="0dp"
             android:paddingBottom="0dp"
-            app:backgroundTint="?colorSurface"
-            app:fitsSystemWindowsInsets="start|end|bottom"
+            app:backgroundTint="?attr/colorSurface"
             app:itemHorizontalTranslationEnabled="true"
             app:itemActiveIndicatorStyle="@null"
             app:itemPaddingTop="0dp"
             app:itemPaddingBottom="0dp"
             app:itemIconTint="@color/color_menu_tint"
-            app:itemRippleColor="?colorPrimary"
+            app:itemRippleColor="?attr/colorPrimary"
             app:itemTextAppearanceActive="@style/AppearanceFoundation.Tiny.Bold"
             app:itemTextAppearanceInactive="@style/AppearanceFoundation.Tiny.Bold"
             app:itemTextColor="@color/color_menu_tint"
