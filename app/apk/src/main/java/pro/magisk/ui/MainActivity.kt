@@ -91,7 +91,6 @@ class MainActivity : NavigationActivity<ActivityMainMd2Binding>(), SplashScreenH
         }
 
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
-        window.setDecorFitsSystemWindows(false)
 
         navigation.addOnDestinationChangedListener { _, destination, _ ->
             isRootFragment = when (destination.id) {
