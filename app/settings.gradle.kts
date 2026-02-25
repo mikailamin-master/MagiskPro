@@ -9,4 +9,3 @@ dependencyResolutionManagement {
 }
 rootProject.name = "MagiskPro"
 include(":apk", ":core", ":shared", ":stub", ":test")
-includeBuild("build_src")
