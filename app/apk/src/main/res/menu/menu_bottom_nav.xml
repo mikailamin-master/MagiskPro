@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/ic_home_md2"
+        android:title="HOME"
+        tools:showAsAction="always" />
+
+    <item
+        android:id="@+id/superuserFragment"
+        android:icon="@drawable/ic_superuser_md2"
+        android:title="SUPERUSERS"
+        tools:showAsAction="always" />
+
+    <item
+        android:id="@+id/logFragment"
+        android:icon="@drawable/ic_bug_md2"
+        android:title="LOGS"
+        tools:showAsAction="always" />
+
+    <item
+        android:id="@+id/modulesFragment"
+        android:icon="@drawable/ic_module_md2"
+        android:title="MODULES"
+        tools:showAsAction="always" />
+
+</menu>

@@ -1,0 +1,15 @@
+out
+*.zip
+*.apk
+*.log
+/notes.md
+
+# Built binaries
+native/out
+
+# Android Studio
+*.iml
+.idea
+
+/ondk.tar.xz
+/local_ndk.py

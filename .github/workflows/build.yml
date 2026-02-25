@@ -1,0 +1,80 @@
+name: Build MagiskPro
+
+on:
+    push:
+        branches: [main]
+    pull_request:
+        branches: [main]
+    workflow_dispatch:
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                build_type: [release, debug]
+
+        steps:
+            # 1️⃣ Checkout
+            - name: Checkout
+              uses: actions/checkout@v4
+              with:
+                  submodules: recursive
+                  fetch-depth: 1
+
+            # 2️⃣ Install ccache
+            - name: Install ccache
+              run: sudo apt-get update && sudo apt-get install -y ccache
+
+            # 3️⃣ Cache ccache
+            - name: Cache ccache
+              uses: actions/cache@v4
+              with:
+                  path: ~/.ccache
+                  key: ccache-${{ runner.os }}-${{ hashFiles('**/*.java','**/*.kt','**/*.c','**/*.cpp') }}
+                  restore-keys: |
+                      ccache-${{ runner.os }}-
+
+            # 4️⃣ Setup ccache env
+            - name: Setup ccache env
+              run: |
+                  echo "CCACHE_DIR=$HOME/.ccache" >> $GITHUB_ENV
+                  echo "CCACHE_MAXSIZE=2G" >> $GITHUB_ENV
+
+            # 5️⃣ Cache Gradle
+            - name: Cache Gradle
+              uses: actions/cache@v4
+              with:
+                  path: |
+                      ~/.gradle/caches
+                      ~/.gradle/wrapper
+                  key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*','**/gradle-wrapper.properties') }}
+                  restore-keys: |
+                      gradle-${{ runner.os }}-
+
+            # 6️⃣ Setup environment (Magisk-specific)
+            - name: Setup environment
+              uses: ./.github/actions/setup
+              with:
+                  is-asset-build: true
+
+            # 7️⃣ Build depending on matrix
+            - name: Build Magisk
+              run: |
+                  if [ "${{ matrix.build_type }}" = "release" ]; then
+                      python build.py -vr all
+                  else
+                      python build.py -v all
+                  fi
+
+            # 8️⃣ Stop Gradle daemon
+            - name: Stop Gradle Daemon
+              run: ./app/gradlew --stop
+
+            # 9️⃣ Upload APK
+            - name: Upload Magisk artifact
+              uses: actions/upload-artifact@v4
+              with:
+                  name: magisk_${{ matrix.build_type }}
+                  path: ${{ matrix.build_type == 'release' && 'out/app-release.apk' || 'out/app-debug.apk' }}
+                  compression-level: 0  # faster upload
