@@ -17,7 +17,7 @@ jobs:
         steps:
             # 1️⃣ Checkout
             - name: Checkout
-              uses: actions/checkout@v4
+              uses: actions/checkout@v6
               with:
                   submodules: recursive
                   fetch-depth: 1
@@ -28,7 +28,7 @@ jobs:
 
             # 3️⃣ Cache ccache
             - name: Cache ccache
-              uses: actions/cache@v4
+              uses: actions/cache@v6
               with:
                   path: ~/.ccache
                   key: ccache-${{ runner.os }}-${{ hashFiles('**/*.java','**/*.kt','**/*.c','**/*.cpp') }}
@@ -43,7 +43,7 @@ jobs:
 
             # 5️⃣ Cache Gradle
             - name: Cache Gradle
-              uses: actions/cache@v4
+              uses: actions/cache@v6
               with:
                   path: |
                       ~/.gradle/caches
@@ -73,7 +73,7 @@ jobs:
 
             # 9️⃣ Upload APK
             - name: Upload Magisk artifact
-              uses: actions/upload-artifact@v4
+              uses: actions/upload-artifact@v6
               with:
                   name: magisk_${{ matrix.build_type }}
                   path: ${{ matrix.build_type == 'release' && 'out/app-release.apk' || 'out/app-debug.apk' }}
