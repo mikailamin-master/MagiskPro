@@ -60,7 +60,7 @@
             app:itemTextAppearanceActive="@style/AppearanceFoundation.Tiny.Bold"
             app:itemTextAppearanceInactive="@style/AppearanceFoundation.Tiny.Bold"
             app:itemTextColor="@color/color_menu_tint"
-            app:labelVisibilityMode="unlabeled"
+            app:labelVisibilityMode="labeled"
             app:menu="@menu/menu_bottom_nav" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
