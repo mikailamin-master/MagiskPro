@@ -35,7 +35,6 @@
                 app:layout_scrollFlags="noScroll"
                 app:contentInsetStart="24dp"
                 app:contentInsetStartWithNavigation="14dp"
-                app:contentInsetEnd="20dp"
                 tools:layout_marginTop="24dp"
                 tools:title="Home" />
 
