@@ -6,56 +6,57 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:consumeSystemWindowsInsets="start|end"
+        app:edgeToEdge="true"
+        app:fitsSystemWindowsInsets="start|end"
         tools:ignore="RtlHardcoded">
 
-        <!-- App Bar -->
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/main_nav_host"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/main" />
+
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/main_toolbar_wrapper"
+            style="@style/WidgetFoundation.Appbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fitsSystemWindows="true">
+            app:fitsSystemWindowsInsets="top">
 
-            <!-- Large Top App Bar -->
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/main_toolbar"
+                style="@style/WidgetFoundation.Toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:title="Home"
-                app:titleCentered="false"
-                app:layout_scrollFlags="scroll|enterAlways"
-                style="@style/Widget.Material3.Toolbar" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_scrollFlags="noScroll"
+                tools:layout_marginTop="24dp"
+                tools:title="Home" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
-
-        <!-- Content Area -->
-        <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/main_nav_host"
-                android:name="androidx.navigation.fragment.NavHostFragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:defaultNavHost="true"
-                app:navGraph="@navigation/main" />
-
-        </androidx.core.widget.NestedScrollView>
-
-
-        <!-- Bottom Navigation -->
         <pro.magisk.widget.ConcealableBottomNavigationView
             android:id="@+id/main_navigation"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_gravity="bottom"
-            android:background="?attr/colorSurface"
+            android:layout_height="@dimen/internal_bottom_navigation_size"
+            android:layout_gravity="bottom|center_horizontal"
+            android:fitsSystemWindows="false"
+            android:minHeight="0dp"
+            android:paddingBottom="0dp"
+            app:backgroundTint="?colorSurface"
+            app:fitsSystemWindowsInsets="start|end|bottom"
+            app:itemHorizontalTranslationEnabled="true"
+            app:itemActiveIndicatorStyle="@null"
+            app:itemPaddingTop="0dp"
+            app:itemPaddingBottom="0dp"
             app:itemIconTint="@color/color_menu_tint"
+            app:itemRippleColor="?colorPrimary"
+            app:itemTextAppearanceActive="@style/AppearanceFoundation.Tiny.Bold"
+            app:itemTextAppearanceInactive="@style/AppearanceFoundation.Tiny.Bold"
             app:itemTextColor="@color/color_menu_tint"
-            app:itemRippleColor="?attr/colorPrimary"
             app:labelVisibilityMode="labeled"
             app:menu="@menu/menu_bottom_nav" />
 
