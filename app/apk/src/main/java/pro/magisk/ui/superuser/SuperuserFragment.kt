@@ -15,8 +15,10 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import pro.magisk.ui.home.RebootMenu
+import pro.magisk.core.Info
+import androidx.core.view.MenuProvider
 
-class SuperuserFragment : BaseFragment<FragmentSuperuserMd2Binding>() {
+class SuperuserFragment : BaseFragment<FragmentSuperuserMd2Binding>(), MenuProvider {
 
     override val layoutRes = R.layout.fragment_superuser_md2
     override val viewModel by viewModel<SuperuserViewModel>()
