@@ -140,13 +140,9 @@ class HomeViewModel(
     }
     
     fun go_settings() {
-        activity?.let {
-            NavigationActivity.navigate(
-                HomeFragmentDirections.actionHomeFragmentToSettingsFragment(),
-                it.findNavController(R.id.main_nav_host),
-                it.contentResolver,
-            )
-        }
+        HomeFragmentDirections
+            .actionHomeFragmentToSettingsFragment()
+            .navigate()
     }
 
     fun onMagiskPressed() = withExternalRW {
