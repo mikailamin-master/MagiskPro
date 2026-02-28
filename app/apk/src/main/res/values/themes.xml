@@ -17,7 +17,7 @@
         <item name="android:windowBackground">?colorSurface</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="dialogTheme">@style/ThemeOverlay.Foundation.Dialog</item>
-        <item name="android:statusBarColor">?colorSurface</item>
+        <item name="android:statusBarColor">?colorPrimary</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
 

@@ -7,9 +7,9 @@
 
     <style name="WidgetFoundation.Toolbar" parent="Widget.Material3.Toolbar">
         <item name="titleTextAppearance">@style/AppearanceFoundation.Title</item>
-        <item name="titleTextColor">?colorOnSurface</item>
+        <item name="titleTextColor">?colorOnPrimary</item>
         <item name="subtitleTextAppearance">@style/AppearanceFoundation.Caption</item>
-        <item name="subtitleTextColor">?colorOnSurfaceVariant</item>
+        <item name="subtitleTextColor">?colorOnPrimaryVariant</item>
         <item name="android:layout_height">?actionBarSize</item>
         <item name="android:background">?colorPrimary</item>
     </style>
