@@ -112,13 +112,11 @@
                 android:layout_marginStart="@dimen/l1"
                 android:layout_marginEnd="@dimen/l1"
                 android:layout_marginTop="@dimen/l_125"
-                android:layout_marginBottom="@dimen/l_125"
                 android:onClick="@{() -> viewModel.go_settings()}"
                 android:text="@string/settings"
                 android:textAllCaps="false"
                 android:textSize="12sp"
-                app:cornerRadius="@dimen/dialog_corner_radius"
-                app:icon="@drawable/ic_settings_md2" />
+                app:cornerRadius="@dimen/dialog_corner_radius" />
 
             <Button
                 style="@style/WidgetFoundation.Button.Outlined.Error"
@@ -128,13 +126,11 @@
                 android:layout_marginStart="@dimen/l1"
                 android:layout_marginEnd="@dimen/l1"
                 android:layout_marginTop="@dimen/l_125"
-                android:layout_marginBottom="@dimen/l_125"
                 android:onClick="@{() -> viewModel.onDeletePressed()}"
                 android:text="@string/uninstall_magisk_title"
                 android:textAllCaps="false"
                 android:textSize="12sp"
-                app:cornerRadius="@dimen/dialog_corner_radius"
-                app:icon="@drawable/ic_delete_md2" />
+                app:cornerRadius="@dimen/dialog_corner_radius" />
 
         </LinearLayout>
 
