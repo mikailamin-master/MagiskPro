@@ -11,6 +11,11 @@ import rikka.recyclerview.addItemSpacing
 import rikka.recyclerview.fixEdgeEffect
 import pro.magisk.core.R as CoreR
 
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import pro.magisk.ui.home.RebootMenu
+
 class SuperuserFragment : BaseFragment<FragmentSuperuserMd2Binding>() {
 
     override val layoutRes = R.layout.fragment_superuser_md2
@@ -29,6 +34,20 @@ class SuperuserFragment : BaseFragment<FragmentSuperuserMd2Binding>() {
             addItemSpacing(R.dimen.l1, R.dimen.l_50, R.dimen.l1)
             fixEdgeEffect()
         }
+    }
+    
+    override fun onCreateMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_home_md2, menu)
+        if (!Info.isRooted)
+            menu.removeItem(R.id.action_reboot)
+    }
+
+    override fun onMenuItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_reboot -> activity?.let { RebootMenu.inflate(it).show() }
+            else -> return super.onOptionsItemSelected(item)
+        }
+        return true
     }
 
     override fun onPreBind(binding: FragmentSuperuserMd2Binding) {}
