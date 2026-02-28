@@ -8,10 +8,13 @@
     <style name="WidgetFoundation.Toolbar" parent="Widget.Material3.Toolbar">
         <item name="titleTextAppearance">@style/AppearanceFoundation.Title</item>
         <item name="titleTextColor">?colorOnPrimary</item>
+        <item name="titleCentered">true</item>
         <item name="subtitleTextAppearance">@style/AppearanceFoundation.Caption</item>
         <item name="subtitleTextColor">?colorOnPrimaryVariant</item>
+        <item name="subtitleCentered">true</item>
         <item name="android:layout_height">?actionBarSize</item>
         <item name="android:background">?colorPrimary</item>
+        <item name="navigationIconTint">?colorOnPrimary</item>
     </style>
 
 

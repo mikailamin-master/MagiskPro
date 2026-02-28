@@ -22,7 +22,7 @@
 
     <item
         android:id="@+id/modulesFragment"
-        android:icon="@drawable/ic_module_md2"
+        android:icon="@drawable/ic_brick_md2"
         android:title="MODULES"
         tools:showAsAction="always" />
 
