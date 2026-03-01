@@ -17,5 +17,5 @@
 
     <dimen name="internal_action_bar_size">72dp</dimen>
     <dimen name="internal_bottom_navigation_size">72dp</dimen>
-    <dimen name="internal_bottom_navigation_action_margin">80dp</dimen>
+    <dimen name="internal_bottom_navigation_action_margin">76dp</dimen>
 </resources>

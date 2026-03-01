@@ -16,6 +16,7 @@
         <item name="android:background">?colorPrimary</item>
         <item name="navigationIconTint">?colorOnPrimary</item>
         <item name="itemIconTint">?colorOnPrimary</item>
+        <item name="menuIconTint">?colorOnPrimary</item>
     </style>
 
 
