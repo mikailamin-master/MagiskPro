@@ -16,8 +16,7 @@
         <item name="android:background">?colorPrimary</item>
         <item name="navigationIconTint">?colorOnPrimary</item>
         <item name="itemIconTint">?colorOnPrimary</item>
-        <item name="android:textColor">?colorOnPrimary</item>
-        <item name="android:textAllCaps">true</item>
+        <item name="colorOnSurfaceVariant">?colorOnPrimary</item>
     </style>
 
 
