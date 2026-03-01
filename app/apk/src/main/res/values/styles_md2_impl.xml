@@ -17,6 +17,7 @@
         <item name="navigationIconTint">?colorOnPrimary</item>
         <item name="itemIconTint">?colorOnPrimary</item>
         <item name="menuIconTint">?colorOnPrimary</item>
+        <item name="android:textAllCaps">true</item>
     </style>
 
 
