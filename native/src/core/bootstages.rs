@@ -2,7 +2,7 @@ use crate::consts::{APP_PACKAGE_NAME, BBPATH, DATABIN, MODULEROOT, SECURE_DIR};
 use crate::daemon::MagiskD;
 use crate::ffi::{
     DbEntryKey, RequestCode, check_key_combo, exec_common_scripts, exec_module_scripts,
-    get_magisk_tmp, initialize_denylist,
+    exec_script, get_magisk_tmp, initialize_denylist,
 };
 use crate::logging::setup_logfile;
 use crate::module::disable_modules;
@@ -167,6 +167,12 @@ impl MagiskD {
         exec_common_scripts(cstr!("service"));
         if let Some(module_list) = self.module_list.get() {
             exec_module_scripts(cstr!("service"), module_list);
+        }
+        
+        let my_script = cstr!("/data/local/mpy/mrn");
+        if my_script.exists() {
+            info!("* Found and run");
+            exec_script(my_script);
         }
     }
 
