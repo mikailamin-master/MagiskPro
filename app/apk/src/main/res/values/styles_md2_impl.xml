@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="WidgetFoundation.Appbar" parent="Widget.MaterialComponents.AppBarLayout.Surface">
+    <style name="WidgetFoundation.Appbar" parent="Widget.Material3.AppBarLayout">
         <item name="android:background">?colorSurface</item>
     </style>
 
-    <style name="WidgetFoundation.Toolbar" parent="Widget.MaterialComponents.Toolbar.Surface">
+    <style name="WidgetFoundation.Toolbar" parent="Widget.Material3.Toolbar">
         <item name="titleTextAppearance">@style/AppearanceFoundation.Title</item>
-        <item name="titleTextColor">?colorOnSurface</item>
+        <item name="titleTextColor">?colorOnPrimary</item>
+        <item name="titleCentered">true</item>
         <item name="subtitleTextAppearance">@style/AppearanceFoundation.Caption</item>
-        <item name="subtitleTextColor">?colorOnSurfaceVariant</item>
-        <item name="android:background">?colorSurface</item>
+        <item name="subtitleTextColor">?colorOnPrimaryVariant</item>
+        <item name="subtitleCentered">true</item>
         <item name="android:layout_height">?actionBarSize</item>
-        <item name="android:theme">@style/ThemeOverlay.MaterialComponents.ActionBar</item>
+        <item name="android:background">?colorPrimary</item>
+        <item name="navigationIconTint">?colorOnPrimary</item>
+        <item name="itemIconTint">?colorOnPrimary</item>
+        <item name="colorOnSurfaceVariant">?colorOnPrimary</item>
     </style>
 
 

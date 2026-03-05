@@ -2,19 +2,22 @@
 <resources>
 
     <style name="Base.V23.Theme.Foundation.Light" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">?colorPrimary</item>
+        <item name="colorSecondary">?colorSecondary</item>
+        <item name="colorSurface">?colorSurface</item>
+        <item name="colorOnSurface">?colorOnSurface</item>
         <item name="android:windowBackground">?colorSurface</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="dialogTheme">@style/ThemeOverlay.Foundation.Dialog</item>
-        <item name="android:statusBarColor">?colorSurface</item>
+        <item name="android:statusBarColor">?colorPrimary</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
-        <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <style name="Base.V23.Theme.Foundation" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:windowBackground">?colorSurface</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="dialogTheme">@style/ThemeOverlay.Foundation.Dialog</item>
-        <item name="android:statusBarColor">?colorSurface</item>
+        <item name="android:statusBarColor">?colorPrimary</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
 

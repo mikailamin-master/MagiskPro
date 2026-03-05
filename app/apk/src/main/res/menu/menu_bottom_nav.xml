@@ -11,13 +11,13 @@
     <item
         android:id="@+id/superuserFragment"
         android:icon="@drawable/ic_superuser_md2"
-        android:title="SUPERUSERS"
+        android:title="SUAPPS"
         tools:showAsAction="always" />
 
     <item
         android:id="@+id/logFragment"
         android:icon="@drawable/ic_bug_md2"
-        android:title="LOGS"
+        android:title="SULOGS"
         tools:showAsAction="always" />
 
     <item

@@ -31,6 +31,7 @@ import pro.magisk.utils.asText
 import com.topjohnwu.superuser.Shell
 import kotlin.math.roundToInt
 import pro.magisk.core.R as CoreR
+import pro.magisk.arch.NavigationActivity
 
 class HomeViewModel(
     private val svc: NetworkService
@@ -136,6 +137,12 @@ class HomeViewModel(
                 ManagerInstallDialog().show()
             }
         }
+    }
+    
+    fun go_settings() {
+        HomeFragmentDirections
+            .actionHomeFragmentToSettingsFragment()
+            .navigate()
     }
 
     fun onMagiskPressed() = withExternalRW {
